@@ -7,6 +7,6 @@ namespace BestRestaurants.Models
     public string Description { get; set; }
     public string Location { get; set; }
     public int CuisineID { get; set; }
-    public virtual Category Category { get; set; }
+    public virtual Cuisine Cuisine { get; set; }
   }
 }
