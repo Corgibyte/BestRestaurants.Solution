@@ -7,7 +7,7 @@ namespace BestRestaurants.Models
     public DbSet<Cuisine> Cuisines { get; set; }
     public DbSet<Restaurant> Restaurants { get; set; }
 
-    public BestRestaurantsContext(DbContextOptions options) { }
+    public BestRestaurantsContext(DbContextOptions options) : base(options) { }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       optionsBuilder.UseLazyLoadingProxies();

@@ -45,7 +45,7 @@ namespace BestRestaurants.Controllers
     public ActionResult Edit(int id)
     {
       var thisRestaurant = _db.Restaurants.FirstOrDefault(restaurant => restaurant.RestaurantId == id);
-      ViewBag.RestaurantId = new SelectList(_db.Cuisines, "CuisineId", "CuisineName");
+      ViewBag.CuisineId = new SelectList(_db.Cuisines, "CuisineId", "CuisineName");
       return View(thisRestaurant);
     }
 
