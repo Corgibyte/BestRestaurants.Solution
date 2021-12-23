@@ -37,7 +37,10 @@ namespace BestRestaurants.Controllers
     public ActionResult Details(int id)
     {
       Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id);
-      return View(thisCuisine);
+      List<Restaurant> restaurants = _db.Restaurants.Where(restaurant => restaurant.CuisineId == id).ToList();
+      ViewData.Add("cuisine", thisCuisine);
+      ViewData.Add("restaurants", restaurants);
+      return View();
     }
 
     public ActionResult Edit(int id)
@@ -64,6 +67,11 @@ namespace BestRestaurants.Controllers
     public ActionResult DeleteConfirmed(int id)
     {
       var thisCuisine = _db.Cuisines.FirstOrDefault(cuisine => cuisine.CuisineId == id);
+      var restaurants = _db.Restaurants.Where(restaurant => restaurant.CuisineId == id);
+      foreach (Restaurant restaurant in restaurants)
+      {
+        _db.Restaurants.Remove(restaurant);
+      }      
       _db.Cuisines.Remove(thisCuisine);
       _db.SaveChanges();
       return RedirectToAction("Index");
